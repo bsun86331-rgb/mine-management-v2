@@ -1,145 +1,1524 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>矿山综合管理系统 V2</title>
-  <style>
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      background:#f1f5f9;
-      color:#0f172a;
-      font-family:Arial,"Microsoft YaHei",sans-serif;
-    }
-    header{
-      padding:32px 18px;
-      text-align:center;
-      background:linear-gradient(135deg,#0f172a,#1e40af);
-      color:white;
-    }
-    header h1{margin:0 0 10px;font-size:27px}
-    header p{margin:0;color:#cbd5e1;font-size:14px}
-    main{max-width:1100px;margin:auto;padding:24px 16px}
-    .intro{
-      padding:20px;
-      margin-bottom:22px;
-      background:white;
-      border-radius:14px;
-      line-height:1.8;
-      box-shadow:0 3px 12px #00000008;
-    }
-    h2{font-size:20px;margin:8px 0 18px}
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:16px;
-    }
-    .card{
-      padding:22px 15px;
-      border:1px solid #e2e8f0;
-      border-radius:14px;
-      background:white;
-      text-align:center;
-    }
-    .icon{font-size:40px}
-    .card h3{font-size:17px;margin:13px 0 6px}
-    .card p{color:#64748b;font-size:12px;min-height:34px}
-    button{
-      width:100%;
-      padding:12px;
-      border:0;
-      border-radius:9px;
-      background:#2563eb;
-      color:white;
-      font-size:14px;
-      font-weight:bold;
-      cursor:pointer;
-    }
-    button:disabled{
-      background:#cbd5e1;
-      color:#475569;
-      cursor:not-allowed;
-    }
-    footer{
-      padding:25px;
-      text-align:center;
-      color:#64748b;
-      font-size:12px;
-    }
-    @media(max-width:700px){
-      .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-      header h1{font-size:22px}
-    }
-    @media(max-width:400px){
-      .grid{grid-template-columns:1fr}
-    }
-  </style>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#0b1220"
+    >
+
+    <meta
+        name="description"
+        content="矿山管理系统岗位入口"
+    >
+
+    <title>
+        矿山管理系统
+    </title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        :root {
+
+            --bg:
+                #eef2f7;
+
+            --card:
+                #ffffff;
+
+            --text:
+                #0f172a;
+
+            --muted:
+                #64748b;
+
+            --line:
+                #e2e8f0;
+
+            --navy:
+                #0b1220;
+
+            --navy-soft:
+                #111c31;
+
+            --primary:
+                #2563eb;
+
+            --primary-soft:
+                #eff6ff;
+
+            --success:
+                #16a34a;
+
+            --shadow:
+                0 10px 30px
+                rgba(
+                    15,
+                    23,
+                    42,
+                    .08
+                );
+
+        }
+
+
+        body {
+
+            margin:
+                0;
+
+            min-height:
+                100vh;
+
+            background:
+
+                radial-gradient(
+                    circle
+                    at top right,
+                    rgba(
+                        37,
+                        99,
+                        235,
+                        .08
+                    ),
+                    transparent
+                    34%
+                ),
+
+                var(--bg);
+
+            color:
+                var(--text);
+
+            font-family:
+                Arial,
+                "Microsoft YaHei",
+                sans-serif;
+
+        }
+
+
+        button,
+        input,
+        select,
+        textarea {
+
+            font:
+                inherit;
+
+        }
+
+
+        button {
+
+            -webkit-tap-highlight-color:
+                transparent;
+
+        }
+
+
+        .site-header {
+
+            position:
+                relative;
+
+            overflow:
+                hidden;
+
+            padding:
+                34px 18px
+                38px;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    #08111f,
+                    #111c31 58%,
+                    #172554
+                );
+
+            color:
+                #ffffff;
+
+        }
+
+
+        .site-header::after {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            width:
+                280px;
+
+            height:
+                280px;
+
+            right:
+                -90px;
+
+            bottom:
+                -170px;
+
+            border-radius:
+                50%;
+
+            background:
+                rgba(
+                    59,
+                    130,
+                    246,
+                    .18
+                );
+
+        }
+
+
+        .header-inner {
+
+            position:
+                relative;
+
+            z-index:
+                1;
+
+            width:
+                100%;
+
+            max-width:
+                980px;
+
+            margin:
+                0 auto;
+
+        }
+
+
+        .brand-line {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                12px;
+
+        }
+
+
+        .brand-mark {
+
+            width:
+                52px;
+
+            height:
+                52px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            flex:
+                0 0 auto;
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    .18
+                );
+
+            border-radius:
+                16px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    .08
+                );
+
+            font-size:
+                28px;
+
+        }
+
+
+        .brand-title {
+
+            margin:
+                0;
+
+            font-size:
+                28px;
+
+            line-height:
+                1.2;
+
+            letter-spacing:
+                .5px;
+
+        }
+
+
+        .brand-subtitle {
+
+            margin:
+                6px 0 0;
+
+            color:
+                #cbd5e1;
+
+            font-size:
+                13px;
+
+            letter-spacing:
+                .3px;
+
+        }
+
+
+        .header-description {
+
+            max-width:
+                680px;
+
+            margin:
+                22px 0 0;
+
+            color:
+                #dbe4f0;
+
+            font-size:
+                14px;
+
+            line-height:
+                1.8;
+
+        }
+
+
+        .header-tags {
+
+            display:
+                flex;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                8px;
+
+            margin-top:
+                18px;
+
+        }
+
+
+        .header-tag {
+
+            padding:
+                7px 10px;
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    .13
+                );
+
+            border-radius:
+                999px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    .06
+                );
+
+            color:
+                #e2e8f0;
+
+            font-size:
+                12px;
+
+        }
+
+
+        main {
+
+            width:
+                100%;
+
+            max-width:
+                980px;
+
+            margin:
+                0 auto;
+
+            padding:
+                22px 14px
+                42px;
+
+        }
+
+
+        .welcome {
+
+            display:
+                flex;
+
+            align-items:
+                flex-start;
+
+            justify-content:
+                space-between;
+
+            gap:
+                18px;
+
+            margin:
+                -24px 0 20px;
+
+            padding:
+                18px;
+
+            position:
+                relative;
+
+            z-index:
+                3;
+
+            border:
+                1px solid
+                rgba(
+                    226,
+                    232,
+                    240,
+                    .9
+                );
+
+            border-radius:
+                18px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    .97
+                );
+
+            box-shadow:
+                var(--shadow);
+
+        }
+
+
+        .welcome-title {
+
+            margin:
+                0 0 6px;
+
+            font-size:
+                18px;
+
+            font-weight:
+                800;
+
+        }
+
+
+        .welcome-text {
+
+            margin:
+                0;
+
+            color:
+                var(--muted);
+
+            font-size:
+                13px;
+
+            line-height:
+                1.75;
+
+        }
+
+
+        .welcome-badge {
+
+            flex:
+                0 0 auto;
+
+            padding:
+                7px 10px;
+
+            border-radius:
+                999px;
+
+            background:
+                #ecfdf5;
+
+            color:
+                #166534;
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+
+        }
+
+
+        .section-heading {
+
+            display:
+                flex;
+
+            align-items:
+                flex-end;
+
+            justify-content:
+                space-between;
+
+            gap:
+                12px;
+
+            margin:
+                0 2px 12px;
+
+        }
+
+
+        .section-heading h2 {
+
+            margin:
+                0;
+
+            font-size:
+                17px;
+
+        }
+
+
+        .section-heading p {
+
+            margin:
+                0;
+
+            color:
+                #94a3b8;
+
+            font-size:
+                12px;
+
+        }
+
+
+        .portal-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    minmax(
+                        0,
+                        1fr
+                    )
+                );
+
+            gap:
+                13px;
+
+        }
+
+
+        .portal-card {
+
+            position:
+                relative;
+
+            min-height:
+                132px;
+
+            padding:
+                17px;
+
+            overflow:
+                hidden;
+
+            border:
+                1px solid
+                var(--line);
+
+            border-radius:
+                17px;
+
+            background:
+                var(--card);
+
+            color:
+                var(--text);
+
+            box-shadow:
+                0 5px 18px
+                rgba(
+                    15,
+                    23,
+                    42,
+                    .045
+                );
+
+            text-align:
+                left;
+
+            cursor:
+                pointer;
+
+            transition:
+                transform
+                .15s ease,
+                border-color
+                .15s ease,
+                box-shadow
+                .15s ease;
+
+        }
+
+
+        .portal-card::after {
+
+            content:
+                "›";
+
+            position:
+                absolute;
+
+            right:
+                16px;
+
+            top:
+                16px;
+
+            color:
+                #cbd5e1;
+
+            font-size:
+                26px;
+
+            font-weight:
+                300;
+
+        }
+
+
+        .portal-card:hover {
+
+            transform:
+                translateY(
+                    -2px
+                );
+
+            border-color:
+                #bfdbfe;
+
+            box-shadow:
+                0 12px 28px
+                rgba(
+                    15,
+                    23,
+                    42,
+                    .08
+                );
+
+        }
+
+
+        .portal-card:active {
+
+            transform:
+                scale(
+                    .985
+                );
+
+        }
+
+
+        .portal-icon {
+
+            width:
+                46px;
+
+            height:
+                46px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            margin-bottom:
+                11px;
+
+            border-radius:
+                14px;
+
+            background:
+                var(--primary-soft);
+
+            font-size:
+                26px;
+
+        }
+
+.portal-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    border-radius: 10px;
+}
+ .auxiliary-icon-box {
+    width: 105px !important;
+    height: 46px !important;
+}
+
+.auxiliary-icon-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
+    transform: none;
+}
+        .portal-title {
+
+            display:
+                block;
+
+            margin-bottom:
+                5px;
+
+            font-size:
+                16px;
+
+            font-weight:
+                800;
+
+        }
+
+
+        .portal-subtitle {
+
+            display:
+                block;
+
+            max-width:
+                88%;
+
+            color:
+                var(--muted);
+
+            font-size:
+                12px;
+
+            line-height:
+                1.5;
+
+        }
+
+
+        .portal-card.protected {
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #ffffff,
+                    #f8fafc
+                );
+
+        }
+
+
+        .portal-card.protected
+        .portal-icon {
+
+            background:
+                #f5f3ff;
+
+        }
+
+
+        .admin-card
+        .portal-icon {
+
+            background:
+                #fff7ed;
+
+        }
+
+
+        .helper-note {
+
+            margin-top:
+                16px;
+
+            padding:
+                14px 15px;
+
+            border:
+                1px dashed
+                #cbd5e1;
+
+            border-radius:
+                13px;
+
+            color:
+                #64748b;
+
+            font-size:
+                12px;
+
+            line-height:
+                1.75;
+
+        }
+
+
+        footer {
+
+            padding:
+                20px 15px
+                28px;
+
+            text-align:
+                center;
+
+            color:
+                #94a3b8;
+
+            font-size:
+                12px;
+
+        }
+
+
+        .modal {
+
+            display:
+                none;
+
+            position:
+                fixed;
+
+            inset:
+                0;
+
+            z-index:
+                1000;
+
+            padding:
+                20px 14px;
+
+            background:
+                rgba(
+                    2,
+                    6,
+                    23,
+                    .68
+                );
+
+            backdrop-filter:
+                blur(
+                    4px
+                );
+
+            overflow-y:
+                auto;
+
+        }
+
+
+        .modal.show {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+        }
+
+
+        .modal-card {
+
+            width:
+                100%;
+
+            max-width:
+                500px;
+
+            max-height:
+                90vh;
+
+            overflow-y:
+                auto;
+
+            padding:
+                20px;
+
+            border:
+                1px solid
+                rgba(
+                    226,
+                    232,
+                    240,
+                    .9
+                );
+
+            border-radius:
+                20px;
+
+            background:
+                #ffffff;
+
+            box-shadow:
+                0 22px 60px
+                rgba(
+                    2,
+                    6,
+                    23,
+                    .28
+                );
+
+        }
+
+
+        .modal-header {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                12px;
+
+            margin-bottom:
+                16px;
+
+        }
+
+
+        .modal-title {
+
+            margin:
+                0;
+
+            font-size:
+                20px;
+
+        }
+
+
+        .close-btn {
+
+            width:
+                40px;
+
+            height:
+                40px;
+
+            padding:
+                0;
+
+            border:
+                0;
+
+            border-radius:
+                999px;
+
+            background:
+                #f1f5f9;
+
+            color:
+                #334155;
+
+            font-size:
+                21px;
+
+            cursor:
+                pointer;
+
+        }
+
+
+        .role-list {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    minmax(
+                        0,
+                        1fr
+                    )
+                );
+
+            gap:
+                10px;
+
+        }
+
+
+        .role-btn {
+
+            width:
+                100%;
+
+            min-height:
+                54px;
+
+            padding:
+                12px 14px;
+
+            border:
+                1px solid
+                #cbd5e1;
+
+            border-radius:
+                11px;
+
+            background:
+                #ffffff;
+
+            color:
+                #0f172a;
+
+            text-align:
+                left;
+
+            font-size:
+                14px;
+
+            font-weight:
+                700;
+
+            cursor:
+                pointer;
+
+        }
+
+
+        .role-btn:hover {
+
+            border-color:
+                #93c5fd;
+
+            background:
+                #f8fbff;
+
+        }
+
+
+        .role-btn:active {
+
+            background:
+                #eff6ff;
+
+        }
+
+
+        @media (
+            max-width:
+                620px
+        ) {
+
+            .site-header {
+
+                padding:
+                    26px 16px
+                    34px;
+
+            }
+
+
+            .brand-title {
+
+                font-size:
+                    23px;
+
+            }
+
+
+            .brand-mark {
+
+                width:
+                    46px;
+
+                height:
+                    46px;
+
+                border-radius:
+                    14px;
+
+                font-size:
+                    25px;
+
+            }
+
+
+            .header-description {
+
+                font-size:
+                    13px;
+
+            }
+
+
+            .welcome {
+
+                flex-direction:
+                    column;
+
+                gap:
+                    10px;
+
+            }
+
+
+            .portal-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .portal-card {
+
+                min-height:
+                    112px;
+
+            }
+
+
+            .role-list {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .section-heading p {
+
+                display:
+                    none;
+
+            }
+
+        }
+
+    </style>
+    
+
 </head>
+
+
 <body>
-<header>
-  <h1>⛏️ 矿山综合管理系统</h1>
-  <p>Mine Management System · V2.0</p>
+
+
+<header class="site-header">
+
+    <div class="header-inner">
+
+        <div class="brand-line">
+
+            <div class="brand-mark">
+                ⛏️
+            </div>
+
+            <div>
+
+                <h1 class="brand-title">
+                    矿山管理系统
+                </h1>
+
+                <p class="brand-subtitle">
+                    Mine Operations Management System
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <p class="header-description">
+            面向矿山现场的人员、生产、车辆、设备与管理岗位统一入口。
+            系统根据人员审核状态自动进入登记、等待审核或对应工作页面。
+        </p>
+
+
+        <div class="header-tags">
+
+            <span class="header-tag">
+                人员统一登记
+            </span>
+
+            <span class="header-tag">
+                管理员审核
+            </span>
+
+            <span class="header-tag">
+                岗位自动分流
+            </span>
+
+        </div>
+
+    </div>
+
 </header>
 
-<main>
-  <section class="intro">
-    <strong>欢迎使用矿山综合管理系统 V2</strong>
-    <div>统一人员、设备、调度、生产、维修及数据管理。</div>
-    <div>请选择本人岗位，进入对应工作端。</div>
-  </section>
 
-  <h2>岗位功能入口</h2>
-  <div class="grid" id="portalGrid"></div>
+<main>
+
+
+    <section class="welcome">
+
+        <div>
+
+            <p class="welcome-title">
+                请选择您的工作岗位
+            </p>
+
+            <p class="welcome-text">
+                首次使用需填写个人资料并提交管理员审核。
+                审核通过后，再次选择自己的岗位即可进入对应工作页面。
+                总经理和管理员需进行二次权限验证。
+            </p>
+
+        </div>
+
+
+        <span class="welcome-badge">
+            正式入口
+        </span>
+
+    </section>
+
+
+    <div class="section-heading">
+
+        <h2>
+            岗位入口
+        </h2>
+
+        <p>
+            请选择与本人实际岗位一致的入口
+        </p>
+
+    </div>
+
+
+    <section class="portal-grid">
+
+
+        <button
+            type="button"
+            class="portal-card"
+            onclick="selectPosition('挖机司机')"
+        >
+
+            <span class="portal-icon">
+            <img src="https://bsun86331-rgb.github.io/mine-management/images/excavator.jpg" alt="挖机司机">
+            </span>
+
+            <span class="portal-title">
+                挖机司机
+            </span>
+
+            <span class="portal-subtitle">
+                挖掘机装车与生产作业端
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="portal-card"
+            onclick="selectPosition('汽车司机')"
+        >
+
+            <span class="portal-icon">
+                <img src="https://bsun86331-rgb.github.io/mine-management/images/truck.jpg" alt="汽车司机">
+            </span>
+
+            <span class="portal-title">
+                汽车司机
+            </span>
+
+            <span class="portal-subtitle">
+                运输车辆作业与运输记录
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="portal-card"
+            onclick="openRoleModal('auxiliary')"
+        >
+
+        <span class="portal-icon auxiliary-icon-box">
+    <img src="https://bsun86331-rgb.github.io/mine-management/images/imagesauxiliary.jpg" alt="辅助车辆" class="auxiliary-icon-img">
+</span>
+
+            <span class="portal-title">
+                辅助车辆
+            </span>
+
+            <span class="portal-subtitle">
+                铲车 · 加油车 · 大巴 · 平路机 · 洒水车 · 推土机
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="portal-card"
+            onclick="selectPosition('车队长')"
+        >
+
+            <span class="portal-icon">
+                <img src="https://bsun86331-rgb.github.io/mine-management/images/imagesdispatch.jpg" alt="车队长/调度">
+            </span>
+
+            <span class="portal-title">
+                车队长 / 调度
+            </span>
+
+            <span class="portal-subtitle">
+                生产任务、车辆调度与异常管理
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="portal-card"
+            onclick="openRoleModal('maintenance')"
+        >
+
+            <span class="portal-icon">
+                <img src="https://bsun86331-rgb.github.io/mine-management/images/imagesmaintenance.jpg" alt="维修端">
+            </span>
+
+            <span class="portal-title">
+                维修端
+            </span>
+
+            <span class="portal-subtitle">
+                维修管理 · 维修员
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="portal-card"
+            onclick="openRoleModal('management')"
+        >
+
+            <span class="portal-icon">
+                <img src="https://bsun86331-rgb.github.io/mine-management/images/imagesmanagement.jpg" alt="中层管理">
+            </span>
+
+            <span class="portal-title">
+                中层管理
+            </span>
+
+            <span class="portal-subtitle">
+                测量 · 安全 · 统计 · 会计 · 后勤 · 库房管理
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="portal-card protected"
+            onclick="selectPosition('总经理')"
+        >
+
+            <span class="portal-icon">
+               <img src="https://bsun86331-rgb.github.io/mine-management/images/imagesgeneral-manager.jpg" alt="总经理">
+            </span>
+
+            <span class="portal-title">
+                总经理
+            </span>
+
+            <span class="portal-subtitle">
+                经营驾驶舱、审批与综合管理
+            </span>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="portal-card protected admin-card"
+            onclick="selectPosition('管理员')"
+        >
+
+            <span class="portal-icon">
+                ⚙️
+            </span>
+
+            <span class="portal-title">
+                管理员
+            </span>
+
+            <span class="portal-subtitle">
+                人员审核、基础资料与系统管理
+            </span>
+
+        </button>
+
+
+    </section>
+
+
+    <div class="helper-note">
+        系统会自动识别当前浏览器中的人员资料状态：
+        未登记进入人员登记页；
+        待审核进入审核等待页；
+        已审核进入对应岗位工作页。
+        请不要选择与本人实际岗位不一致的入口。
+    </div>
+
+
 </main>
 
+
 <footer>
-  矿山综合管理系统 V2.0 · 全新架构
+    矿山管理系统 · 首页最终优化版 V2.10.2J
 </footer>
+
+
+<div
+    class="modal"
+    id="roleModal"
+    onclick="handleModalBackground(event)"
+>
+
+    <div class="modal-card">
+
+        <div class="modal-header">
+
+            <h2
+                class="modal-title"
+                id="roleModalTitle"
+            >
+                选择岗位
+            </h2>
+
+            <button
+                type="button"
+                class="close-btn"
+                onclick="closeRoleModal()"
+                aria-label="关闭"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div
+            class="role-list"
+            id="roleList"
+        >
+        </div>
+
+    </div>
+
+</div>
+
 
 <script>
 "use strict";
-
-const modules = [
-  ["👑","总经理端","经营管理与综合报表","general-manager.html"],
-  ["🛡️","管理员端","人员审核与系统设置","admin-review.html"],
-  ["📋","调度端","任务创建、分配与生产看板","dispatch.html"],
-  ["🚚","汽车司机端","运输任务与趟数记录","driver-work.html"],
-  ["🚜","挖机司机端","挖机任务与装车统计","excavator.html"],
-  ["🚧","辅助车辆端","辅助设备及作业记录","auxiliary.html"],
-  ["⛽","加油车端","加油申请与加油记录","fuel.html"],
-  ["🔧","维修管理端","故障维修与设备保养","maintenance.html"],
-  ["🧰","维修员端","维修工单与维修反馈","maintenance-worker.html"],
-  ["📦","库房管理端","物资入库、领用与库存","warehouse.html"],
-  ["📊","综合管理端","统计、考勤与业务管理","management.html"],
-  ["👷","人员登记","员工登记与审核申请","person-register.html"]
-];
-
-const grid = document.getElementById("portalGrid");
-
-modules.forEach(([icon,title,description,url])=>{
-  const card=document.createElement("div");
-  card.className="card";
-
-  const emoji=document.createElement("div");
-  emoji.className="icon";
-  emoji.textContent=icon;
-
-  const heading=document.createElement("h3");
-  heading.textContent=title;
-
-  const text=document.createElement("p");
-  text.textContent=description;
-
-  const button=document.createElement("button");
-  button.textContent="待开发";
-  button.disabled=true;
-  button.dataset.target=url;
-
-  card.append(emoji,heading,text,button);
-  grid.appendChild(card);
-});
+const groups={
+  auxiliary:["铲车司机","加油车司机","大巴司机","平路机司机","洒水车司机","推土机司机"],
+  maintenance:["维修管理","维修员"],
+  management:["测量员","安全员","统计","会计","后勤","库房管理"]
+};
+function selectPosition(role){alert(role+"：V2 岗位页面尚未迁移，暂不开放登录。");}
+function openRoleModal(group){
+ const roles=groups[group]||[];
+ const modal=document.getElementById("roleModal");
+ const title=document.getElementById("roleModalTitle");
+ const list=document.getElementById("roleList");
+ if(!modal||!title||!list)return;
+ title.textContent="请选择岗位";
+ list.replaceChildren();
+ roles.forEach(role=>{
+   const btn=document.createElement("button");
+   btn.type="button";btn.className="role-btn";btn.textContent=role;
+   btn.addEventListener("click",()=>{closeRoleModal();selectPosition(role)});
+   list.appendChild(btn);
+ });
+ modal.classList.add("show");
+}
+function closeRoleModal(){document.getElementById("roleModal")?.classList.remove("show")}
+function handleModalBackground(event){if(event.target?.id==="roleModal")closeRoleModal()}
+document.addEventListener("keydown",event=>{if(event.key==="Escape")closeRoleModal()});
 </script>
-</body>
-</html>
+</body></html>
