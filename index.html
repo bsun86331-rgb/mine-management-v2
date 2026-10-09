@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>矿山综合管理系统 V2</title>
+  <style>
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:#f1f5f9;
+      color:#0f172a;
+      font-family:Arial,"Microsoft YaHei",sans-serif;
+    }
+    header{
+      padding:32px 18px;
+      text-align:center;
+      background:linear-gradient(135deg,#0f172a,#1e40af);
+      color:white;
+    }
+    header h1{margin:0 0 10px;font-size:27px}
+    header p{margin:0;color:#cbd5e1;font-size:14px}
+    main{max-width:1100px;margin:auto;padding:24px 16px}
+    .intro{
+      padding:20px;
+      margin-bottom:22px;
+      background:white;
+      border-radius:14px;
+      line-height:1.8;
+      box-shadow:0 3px 12px #00000008;
+    }
+    h2{font-size:20px;margin:8px 0 18px}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:16px;
+    }
+    .card{
+      padding:22px 15px;
+      border:1px solid #e2e8f0;
+      border-radius:14px;
+      background:white;
+      text-align:center;
+    }
+    .icon{font-size:40px}
+    .card h3{font-size:17px;margin:13px 0 6px}
+    .card p{color:#64748b;font-size:12px;min-height:34px}
+    button{
+      width:100%;
+      padding:12px;
+      border:0;
+      border-radius:9px;
+      background:#2563eb;
+      color:white;
+      font-size:14px;
+      font-weight:bold;
+      cursor:pointer;
+    }
+    button:disabled{
+      background:#cbd5e1;
+      color:#475569;
+      cursor:not-allowed;
+    }
+    footer{
+      padding:25px;
+      text-align:center;
+      color:#64748b;
+      font-size:12px;
+    }
+    @media(max-width:700px){
+      .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      header h1{font-size:22px}
+    }
+    @media(max-width:400px){
+      .grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>⛏️ 矿山综合管理系统</h1>
+  <p>Mine Management System · V2.0</p>
+</header>
+
+<main>
+  <section class="intro">
+    <strong>欢迎使用矿山综合管理系统 V2</strong>
+    <div>统一人员、设备、调度、生产、维修及数据管理。</div>
+    <div>请选择本人岗位，进入对应工作端。</div>
+  </section>
+
+  <h2>岗位功能入口</h2>
+  <div class="grid" id="portalGrid"></div>
+</main>
+
+<footer>
+  矿山综合管理系统 V2.0 · 全新架构
+</footer>
+
+<script>
+"use strict";
+
+const modules = [
+  ["👑","总经理端","经营管理与综合报表","general-manager.html"],
+  ["🛡️","管理员端","人员审核与系统设置","admin-review.html"],
+  ["📋","调度端","任务创建、分配与生产看板","dispatch.html"],
+  ["🚚","汽车司机端","运输任务与趟数记录","driver-work.html"],
+  ["🚜","挖机司机端","挖机任务与装车统计","excavator.html"],
+  ["🚧","辅助车辆端","辅助设备及作业记录","auxiliary.html"],
+  ["⛽","加油车端","加油申请与加油记录","fuel.html"],
+  ["🔧","维修管理端","故障维修与设备保养","maintenance.html"],
+  ["🧰","维修员端","维修工单与维修反馈","maintenance-worker.html"],
+  ["📦","库房管理端","物资入库、领用与库存","warehouse.html"],
+  ["📊","综合管理端","统计、考勤与业务管理","management.html"],
+  ["👷","人员登记","员工登记与审核申请","person-register.html"]
+];
+
+const grid = document.getElementById("portalGrid");
+
+modules.forEach(([icon,title,description,url])=>{
+  const card=document.createElement("div");
+  card.className="card";
+
+  const emoji=document.createElement("div");
+  emoji.className="icon";
+  emoji.textContent=icon;
+
+  const heading=document.createElement("h3");
+  heading.textContent=title;
+
+  const text=document.createElement("p");
+  text.textContent=description;
+
+  const button=document.createElement("button");
+  button.textContent="待开发";
+  button.disabled=true;
+  button.dataset.target=url;
+
+  card.append(emoji,heading,text,button);
+  grid.appendChild(card);
+});
+</script>
+</body>
+</html>
